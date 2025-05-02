@@ -1,0 +1,23 @@
+{
+  "name": "upworkbot",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "bin": "bot.js",
+  "pkg": {
+    "scripts": ["bot.js"],
+    "assets": [
+      "keywords.txt",
+      ".env",
+      "node_modules/puppeteer/.local-chromium/**/*"
+    ]
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "puppeteer-extra": "^3.1.18",
+    "puppeteer-extra-plugin-stealth": "^2.10.0",
+    "xlsx": "^0.18.5"
+  }
+}
