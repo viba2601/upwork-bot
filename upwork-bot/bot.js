@@ -131,7 +131,7 @@ function tooCheap(typeOfJob) {
     await page.goto('https://www.upwork.com/ab/account-security/login',{
         waitUntil: 'load',
     });
-    await page.waitForTimeout(1000);
+    await new Promise(resolve => setTimeout(resolve, 1000));
     // Wait for the page to load 
     
 
@@ -143,26 +143,24 @@ function tooCheap(typeOfJob) {
 
     // enter the email and password
     await page.type('#login_username', email, { delay: 100 });
-    await page.waitForTimeout(1000);
+    await new Promise(resolve => setTimeout(resolve, 1500));
     
     // click the "continue with email" button
-    await page.screenshot({ path: 'Login-click.png' });
     await new Promise(r => setTimeout(r, 1000));
     
     await page.click('#login_password_continue');
     // some randomness to the mouse movement
     for (let i = 0; i < 10; i++) {
         await page.mouse.move(getRndm(0, 10000), getRndm(0, 1000));
-        await page.waitForTimeout(1000);
+        await new Promise(resolve => setTimeout(resolve, 1000));
     }
     // password
     await page.type('#login_password', password);
-    await page.screenshot({ path: 'before-click.png' });
     await page.click('#login_control_continue');
     // move the mouse randomly to be more human 
     for (let i = 0; i < 10; i++) {
         await page.mouse.move(getRndm(0, 20000), getRndm(0, 10000));
-        await page.waitForTimeout(1500);
+        await new Promise(resolve => setTimeout(resolve, 1000));
     }
     // wait for the page to load
     // wait for the search input to load 
@@ -172,10 +170,10 @@ function tooCheap(typeOfJob) {
     // await page.waitForSelector('input[placeholder="Search for job"]', { visible: true });
     for (let i = 0; i < keywords.length; i++) {
         // console.log('searching for ' + keywords[i]);
-        for (let j = 1; j < 6; j++) {
-            // scrolling throught 5 pages 
+        for (let j = 1; j < 3; j++) {
+            // scrolling throught 2 pages 
             await page.goto('https://www.upwork.com/nx/jobs/search/?q=' + keywords[i] + '&sort=recency' + '&page=' + j);
-            await page.waitForTimeout(3000);
+            await new Promise(resolve => setTimeout(resolve, 3000));
             // await page.waitForSelector('div[data-test="main-tabs-index"]', { visible: true });
             // get all sections with data-test="JobTile"
             const listings = await page.$$('article[data-test="JobTile"]');
@@ -214,7 +212,7 @@ function tooCheap(typeOfJob) {
     }
     // Add some randomness to the requests
     const randomDelay = Math.random() * 2000;
-    await page.waitForTimeout(randomDelay);
+    await new Promise(resolve => setTimeout(resolve, randomDelay));
     // Close the browser
     await browser.close();
     // write to json file by overriding the file
