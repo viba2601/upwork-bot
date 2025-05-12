@@ -1,0 +1,9 @@
+payment_verified = true
+country = 
+job_type = 
+hourly_min_rate = 20
+hourly_max_rate = 
+fixed_min_budget = 
+fixed_max_budget = 
+interviewing = 7
+invite_sent = 7
